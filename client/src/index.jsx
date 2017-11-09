@@ -15,7 +15,20 @@ class App extends React.Component {
 
   search (term) {
     console.log(`${term} was searched`);
-    // TODO
+    //var URL = 'http://127.0.0.1';
+    $.ajax({
+      type: "POST",
+      url: '/repos',
+      //data: JSON.stringify({query: term}),
+      data: {query: term},
+      success: function (data) {
+        console.log('Post Worked!');
+      },
+      error: function (error) {
+        console.log('Post Failed!');
+      }
+      //dataType: dataType
+    });
   }
 
   render () {
@@ -28,3 +41,7 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+
+
+
