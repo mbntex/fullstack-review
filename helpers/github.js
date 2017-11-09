@@ -8,31 +8,30 @@ let getReposByUsername = (userName, callback) => {
   // TODO - Use the request module to request repos for a specific
   // user from the github API
 
-  // The options object has been provided to help you out, 
-  // but you'll have to fill in the URL
   let options = {
-    //url: 'https://api.github.com/search/users',
-    url: 'https://api.github.com/users/octocat/repos',
-    //q: userName,
-    //sort: 'repositories',
+    url: `https://api.github.com/users/${userName}/repos`,
     headers: {
       'User-Agent': 'request',
       'Authorization': `token ${config.TOKEN}`
     }
   };
 
+
   request(options, function(err, res, body) {
-    console.log('getReposByUsername RESULTS HERE!!!');
-    console.log('error: ', err );
-    console.log('response & statusCode: ', res && res.statusCode);
-    console.log('body: ', JSON.parse(body));
-    // var parsedBody = JSON.parse(body);
-    // var processData = function (githubData) {
-    //   var (i = 0; i < githubData.length; i++) {
-    //     console.log('NAME = ', githubData[i].name);
-    //   }
-    // }
-   })
+    if (err) {console.log('ERROR', err)}
+    if (res) {console.log('response & statusCode: ', res && res.statusCode)} //<-- why is res empty when consoled here?
+    if (body) {
+      var parsedBody = JSON.parse(body); 
+      console.log('body:', parsedBody); 
+      var parsedBody = JSON.parse(body);
+
+        for (var i = 0; i < parsedBody.length; i++) {
+          var temp = {userName: userName, name: parsedBody[i].name, description: parsedBody[i].description, repoURL: parsedBody[i].url};
+          console.log(temp);
+          callback(temp);
+        }
+    }
+  })
 }
 
 module.exports.getReposByUsername = getReposByUsername;

@@ -11,16 +11,16 @@ app.use(bodyParser.json());
 ///
 
 app.post('/repos', function (req, res) {
-  githubHelperFn.getReposByUsername(req.body.query);
+  //UPDATE CB WHEN DB IS WORKING!!!
+  githubHelperFn.getReposByUsername(req.body.query, function(item) {console.log(item);});
   // TODO - your code here!
   // This route should take the github username provided
   // and get the repo information from the github API, then
   // save the repo information in the database
   // console.log('SERVER POST RECEIVED!!!');
-  //console.log('REQ = ', req);
   console.log('REQ.BODY =', req.body, ' searched for = ', req.body.query);
   //console.log('REQ BODY = ', JSON.parse(req.body)); //why not working???
-  
+
 
 });
 
