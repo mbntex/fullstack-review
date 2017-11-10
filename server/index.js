@@ -20,12 +20,14 @@ app.post('/repos', function (req, res) {
 });
 
 app.get('/repos', function (req, res) {
-  // console.log('GETREQ.URL =', req.url);
-  // var parsedURL = url.parse(req.url);
-  // console.log('PARSED GET URL ' , parsedURL);
-  //console.log('GET SEARCH TERM FROM URL = ', typeof req.url);
-  dB.find(function(item){console.log('XXXXX', item)}); 
-  //dB.find(function(item){res.send(item)});
+  //dB.find(function(item){console.log('jkjkjkjkj', item)}); 
+  dB.find(function(err, data) { 
+    if (err) {
+      console.log(err);
+    } else {      
+    res.send(data) 
+    }
+  });
 });
 
 let port = 1128;
@@ -37,3 +39,22 @@ app.listen(port, function() {
 
 
 
+//////
+//dB.find(function(item){console.log('GHGHGH', item)}); 
+  // dB.find(function(item) { console.log(typeof item )});
+  // dB.find((err, results) => {
+  //   if (err) {
+  //     throw err;
+  //   } else {
+  //     res.send(results);
+  //   }
+  // })
+  //res.send()
+//   dB.Repo.find({}).limit(25).exec(function(err, results) {
+//     if (err) {
+//       throw err;
+//     } else {
+//       res.send(results);
+//     }
+//   })
+// });

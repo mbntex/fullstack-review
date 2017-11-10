@@ -31,17 +31,22 @@ class App extends React.Component {
       //dataType: dataType
     });
 
-    //$.get('/repos', {query: term}, function(data) {console.log('RESPONSE TO CLIENT = ', data)});
+
     $.ajax({
       url: '/repos',
       //data: {query: term},
       success: function (data) {
-        console.log('JUST GOT DATA FROM GET REQUEST ', data);
+        console.log('DATA FROM GET REQUEST ', data);
       }
       //dataType: dataType
     });
 
-
+    componentDidMount() {
+      console.log('TEST1234!!!!');
+    // fetch(API + DEFAULT_QUERY)
+    //   .then(response => response.json())
+    //   .then(data => this.setState({ hits: data.hits }));
+  }
 
 
   }

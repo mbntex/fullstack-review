@@ -41,29 +41,25 @@ let save = (data, callback) => {
       } else {
         console.log('SAVED TO DATABASE!');
       }
-
     }
   )
 }
 
 
 let find = (callback) => {
-  //var mongoData = Repo.find({}).limit(2);
-  //var mongoData = Repo.find({});  //No??? Or asynch issue?
-  //callback(mongoData);
-  callback(Repo.find({}));
+  //var mongoData = Repo.find({}).limit(2);  //limit responses returned?
+  //callback(Repo.find({})); //Why does this fail?
+  Repo.find({}, function(err, data){
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, data);
+    }
+  });  
+  
 }
 
 
-
-// ///
-// Athlete.find({ 'sport': 'Tennis' }, 'name age', function (err, athletes) {
-//   if (err) return handleError(err);
-//   // 'athletes' contains the list of athletes that match the criteria.
-// })
-
-
-// ///
 
 
 
