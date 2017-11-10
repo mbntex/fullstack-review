@@ -36,25 +36,3 @@ app.listen(port, function() {
   console.log(`listening on port ${port}`);
 });
 
-
-
-
-//////
-//dB.find(function(item){console.log('GHGHGH', item)}); 
-  // dB.find(function(item) { console.log(typeof item )});
-  // dB.find((err, results) => {
-  //   if (err) {
-  //     throw err;
-  //   } else {
-  //     res.send(results);
-  //   }
-  // })
-  //res.send()
-//   dB.Repo.find({}).limit(25).exec(function(err, results) {
-//     if (err) {
-//       throw err;
-//     } else {
-//       res.send(results);
-//     }
-//   })
-// });
