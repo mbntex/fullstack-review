@@ -21,17 +21,17 @@ let getReposByUsername = (userName, callback) => {
     if (err) {console.log('ERROR', err)}
     if (res) {console.log('response & statusCode: ', res && res.statusCode)} //<-- why is res empty when consoled here?
     if (body) {
+      var addedRepos = [];
       var parsedBody = JSON.parse(body); 
-      console.log('body:', parsedBody); 
-      var parsedBody = JSON.parse(body);
-
-        for (var i = 0; i < parsedBody.length; i++) {
-          var temp = {userName: userName, name: parsedBody[i].name, description: parsedBody[i].description, repoURL: parsedBody[i].url};
-          console.log(temp);
+        for (var i = 0; i < 25 && i < parsedBody.length; i++) {
+          var temp = {userName: userName, repoId: parsedBody[i].id, repoName: parsedBody[i].name, repoDescription: parsedBody[i].description, repoURL: parsedBody[i].url};
+          addedRepos.push(temp);
           callback(temp);
         }
     }
   })
 }
+
+
 
 module.exports.getReposByUsername = getReposByUsername;

@@ -6,27 +6,26 @@ let app = express();
 app.use(express.static(__dirname + '/../client/dist'));
 
 ////
+var url = require('url');
+var dB = require('../database/index.js');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 ///
 
 app.post('/repos', function (req, res) {
-  //UPDATE CB WHEN DB IS WORKING!!!
-  githubHelperFn.getReposByUsername(req.body.query, function(item) {console.log(item);});
-  // TODO - your code here!
-  // This route should take the github username provided
-  // and get the repo information from the github API, then
-  // save the repo information in the database
-  // console.log('SERVER POST RECEIVED!!!');
-  console.log('REQ.BODY =', req.body, ' searched for = ', req.body.query);
+  githubHelperFn.getReposByUsername(req.body.query, dB.save);
+  console.log('POST REQ.BODY =', req.body, ' POST searched for = ', req.body.query);
   //console.log('REQ BODY = ', JSON.parse(req.body)); //why not working???
-
-
+  res.send('complete');
 });
 
 app.get('/repos', function (req, res) {
-  // TODO - your code here!
-  // This route should send back the top 25 repos
+  // console.log('GETREQ.URL =', req.url);
+  // var parsedURL = url.parse(req.url);
+  // console.log('PARSED GET URL ' , parsedURL);
+  //console.log('GET SEARCH TERM FROM URL = ', typeof req.url);
+  dB.find(function(item){console.log('XXXXX', item)}); 
+  //dB.find(function(item){res.send(item)});
 });
 
 let port = 1128;
